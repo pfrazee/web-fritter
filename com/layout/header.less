@@ -1,0 +1,88 @@
+header {
+  position: fixed;
+  z-index: 6;
+  width: 100%;
+  height: 47px;
+  background: #fff;
+
+  nav {
+    display: flex;
+    margin: auto;
+    max-width: 900px;
+    height: 100%;
+  }
+
+  .nav-item {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+    margin-right: 5px;
+    border-bottom: 2.5px solid transparent;
+    color: @muted-text;
+
+    .label {
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: .2px;
+    }
+
+    .count {
+      background: var(--theme-color);
+      color: #fff;
+      padding: 0px 5px;
+      border-radius: 25%;
+      font-size: 0.85em;
+      margin-left: 5px;
+    }
+
+    .icon {
+      height: 18px;
+      margin-right: 7px;
+
+      * {
+        fill: @muted-text;
+      }
+
+      &.settings {
+        height: 20px;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    &.profile,
+    &.new-post {
+      border-bottom: 0;
+      padding-right: 0;
+      padding-left: 7px;
+    }
+
+    &.profile {
+      margin-left: auto;
+
+      .name {
+        margin-right: 7px;
+      }
+    }
+
+    &:hover,
+    &.active {
+      color: var(--theme-color);
+      border-color: var(--theme-color);
+      text-decoration: none;
+
+      .icon * {
+        fill: var(--theme-color);
+      }
+    }
+  }
+}

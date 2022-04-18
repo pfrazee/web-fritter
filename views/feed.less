@@ -1,0 +1,56 @@
+.view.feed {
+
+  .view-content {
+    position: relative;
+    z-index: 5;
+  }
+
+  .reply-form,
+  .new-post-form {
+    background: var(--theme-color-faded);
+    padding: 15px;
+
+    .inputs {
+      display: flex;
+      flex-wrap: nowrap;
+      position: relative;
+
+      flex: 1;
+    }
+  }
+
+  .new-post-form {
+
+    .char-count {
+      margin-right: 5px;
+      color: var(--theme-color);
+      opacity: .55;
+      font-size: .8rem;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+
+    .actions {
+      text-align: right;
+      margin-top: 10px;
+      display: none;
+
+      &.editing {
+        display: block;
+      }
+    }
+
+    textarea {
+      display: inline-block;
+    }
+
+    .avatar-container {
+      vertical-align: top;
+      margin-right: 10px;
+    }
+
+    .avatar {
+      margin-top: 3px;
+    }
+  }
+}

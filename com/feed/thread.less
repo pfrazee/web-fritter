@@ -1,0 +1,135 @@
+.thread {
+
+  .main-post {
+    padding: 15px;
+    background: #fff;
+
+    .post-header {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    .follow-btn {
+      margin-left: auto;
+    }
+
+    .avatar-container {
+      margin-right: 10px;
+    }
+
+    .name,
+    .timestamp {
+      font-size: .85rem;
+    }
+
+    .name {
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .timestamp a {
+      color: inherit;
+      font-weight: 300;
+
+      &:hover {
+        color: var(--theme-color);
+      }
+    }
+
+    .text {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+      margin-left: 60px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: pre-line;
+    }
+
+    .post-votes-preview {
+      display: inline-flex;
+      align-items: center;
+      width: ~"calc(100% - 75px)";
+      height: 40px;
+      margin-left: 60px;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+
+      > * {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .votes-label {
+        height: 100%;
+        font-size: .85rem;
+        font-weight: 300;
+        color: @muted-text;
+        padding-right: 5px;
+        border-right: 1px solid #eee;
+      }
+
+      .upvoters {
+        padding-left: 5px;
+
+        .avatar-container {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .post-actions {
+      margin-top: 15px;
+      margin-left: 60px;
+    }
+  }
+
+  .reply-form {
+    display: flex;
+    background: #fafafa;
+    border-top: 1px solid #eee;
+    padding: 15px 25px;
+
+    .avatar-container,
+    .avatar {
+      width: 30px;
+      height: 30px;
+    }
+
+    .avatar-container {
+      margin-right: 10px;
+    }
+
+    textarea {
+      flex: 1;
+      height: 32px;
+      padding-top: 6.5px;
+      margin-bottom: 0;
+
+      &:not(:empty),
+      &:focus {
+        height: 65px;
+      }
+    }
+  }
+
+  .replies-container {
+    border-top: 1px solid #eee;
+  }
+
+  .actions {
+    display: none;
+
+    // reset default .popup-inner .actions styles
+    padding-top: 0;
+    border-top: 0;
+
+    &.editing {
+      display: block;
+      padding-left: 10px;
+    }
+  }
+
+  .reply-info {
+    margin: 10px 0 10px 60px;
+  }
+}

@@ -1,0 +1,206 @@
+.feed-item {
+
+  .avatar-container {
+    display: initial !important;
+  }
+
+  .avatar {
+    margin-right: 5px;
+  }
+
+  &.post,
+  &.like {
+    position: relative;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 12px 15px;
+
+    *:hover {
+      cursor: pointer;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: #ddd;
+      background: var(--theme-color-hover);
+    }
+
+    &.unread {
+      background: #f5f8fa;
+      background: #ddd;
+      background: var(--theme-color-hover);
+    }
+
+    .name,
+    .timestamp,
+    .text {
+      font-size: .85rem;
+    }
+
+    .name,
+    .bullet,
+    .timestamp {
+      line-height: 1;
+    }
+
+    .timestamp a {
+      color: inherit;
+
+      &:hover {
+
+        color: var(--theme-color);
+      }
+    }
+
+    .bullet {
+      font-size: .6rem;
+    }
+  }
+
+  &.post {
+    .avatar {
+      position: absolute;
+      left: 15px;
+      top: 12px;
+    }
+
+    .reply-info {
+      font-size: 0.8rem;
+      margin: 10px 0;
+      color: rgba(0, 0, 0, .6);
+      cursor: pointer;
+
+      .url .name {
+        color: inherit;
+        font-weight: normal;
+        font-size: inherit;
+      }
+    }
+
+    .text {
+      margin-top: -10px;
+      white-space: pre-line;
+      line-height: 1.4;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .post-content {
+      margin-left: 55px;
+      line-height: 1;
+    }
+
+    .post-quote {
+      padding: 8px 10px;
+      margin-top: 8px;
+      border: 1px solid #eee;
+      border-radius: 2px;
+
+      .text {
+        margin: 0;
+      }
+    }
+  }
+
+  &.like {
+
+    .icon {
+      position: absolute;
+      left: 46px;
+      top: 20px;
+      height: 16px;
+      width: 16px;
+      * {
+        fill: crimson;
+        stroke: crimson;
+      }
+    }
+
+    .reply-info {
+      font-size: 0.8rem;
+      margin: 10px 0;
+      color: rgba(0, 0, 0, .6);
+      cursor: pointer;
+
+      .url .name {
+        color: inherit;
+        font-weight: normal;
+        font-size: inherit;
+      }
+    }
+
+    .text {
+      line-height: 1.4;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: pre-line;
+      margin-top: 8px;
+    }
+
+    .like-header {
+      font-size: 0.85rem;
+    }
+
+    .like-content {
+      margin-left: 55px;
+      line-height: 1;
+    }
+
+    .post-quote {
+      padding: 8px 10px;
+      margin-top: 8px;
+      border: 1px solid #eee;
+      border-radius: 2px;
+
+      .text {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.grandchild {
+    position: relative;
+
+    &:before {
+      display: block;
+      content: '';
+      position: absolute;
+      left: 36px;
+      top: -30px;
+      width: 4px;
+      height: 35px;
+      background: var(--theme-color-border);
+      border-radius: 4px;
+    }
+  }
+
+  &.profile {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 10px 15px;
+    position: relative;
+
+    .avatar-container {
+      margin-right: 10px;
+    }
+
+    .follow-btn {
+      margin-left: auto;
+    }
+  }
+
+  &.reply {
+
+    .text {
+      margin-top: 8px;
+    }
+  }
+}
+
+.notifications .feed-item.post {
+
+  .text {
+    margin-top: 8px;
+  }
+}
