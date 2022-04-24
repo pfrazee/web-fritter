@@ -1,0 +1,25 @@
+{
+  "name": "random-access-application",
+  "version": "1.0.0",
+  "description": "Get a random-access-storage instance scoped to your application",
+  "main": "index.js",
+  "browser": "browser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RangerMauve/random-access-application.git"
+  },
+  "author": "rangermauve",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RangerMauve/random-access-application/issues"
+  },
+  "homepage": "https://github.com/RangerMauve/random-access-application#readme",
+  "dependencies": {
+    "env-paths": "^2.2.0",
+    "random-access-file": "^2.1.3",
+    "random-access-web": "^2.0.3"
+  }
+}

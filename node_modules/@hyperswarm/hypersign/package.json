@@ -1,0 +1,29 @@
+{
+  "name": "@hyperswarm/hypersign",
+  "version": "2.1.1",
+  "description": "Utility methods related to public key cryptography to be used with distributed mutable storage",
+  "main": "index.js",
+  "dependencies": {
+    "sodium-native": "^3.1.1"
+  },
+  "devDependencies": {
+    "bencode": "^2.0.1",
+    "standard": "^13.1.0",
+    "tap": "^14.5.0"
+  },
+  "scripts": {
+    "test": "tap --no-esm  -R classic test/*.test.js  && standard --fix",
+    "cov": "tap --no-esm -R classic --100 test/*.test.js",
+    "ci": "standard && npm run cov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyperswarm/hypersign.git"
+  },
+  "author": "David Mark Clements (@davidmarkclem)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hyperswarm/hypersign/issues"
+  },
+  "homepage": "https://github.com/hyperswarm/hypersign"
+}

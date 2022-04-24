@@ -1,0 +1,27 @@
+{
+  "name": "hypercore-cache",
+  "version": "1.0.2",
+  "description": "A caching module for Hypercore tree nodes and blocks ",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewosh/hypercore-cache.git"
+  },
+  "keywords": [
+    "hypercore",
+    "cache"
+  ],
+  "author": "Andrew Osheroff <andrewosh@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrewosh/hypercore-cache/issues"
+  },
+  "homepage": "https://github.com/andrewosh/hypercore-cache#readme",
+  "devDependencies": {
+    "standard": "^14.3.1",
+    "tape": "^4.13.0"
+  }
+}

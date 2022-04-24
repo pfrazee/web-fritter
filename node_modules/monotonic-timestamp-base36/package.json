@@ -1,0 +1,22 @@
+{
+  "name": "monotonic-timestamp-base36",
+  "version": "1.0.0",
+  "description": "monotonic string timestamps, base36. constant-length.",
+  "main": "index.js",
+  "dependencies": {
+    "monotonic-timestamp": "~0.0.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nathan7/monotonic-timestamp-base36.git"
+  },
+  "keywords": [
+    "monotonic",
+    "timestamp"
+  ],
+  "author": "Nathan Zadoks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nathan7/monotonic-timestamp-base36/issues"
+  }
+}

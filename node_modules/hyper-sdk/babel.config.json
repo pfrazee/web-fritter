@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    ["module-resolver", {
+      "alias": {
+        "dat-dns": "./dns-web.js",
+        "hyperswarm": "hyperswarm-web",
+        "util" : "./node_modules/util/util.js",
+        "net": "webnet"
+      }
+    }]
+  ]
+}
