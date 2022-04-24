@@ -105,12 +105,13 @@ class Index {
 
   createReadStream (opts = {}) {
     // start read stream using the given params
-    var opts2 = extend({}, opts)
-    opts2.keys = opts2.values = true
-    opts2.lt = toKey(opts2.lt)
-    opts2.lte = toKey(opts2.lte)
-    opts2.gt = toKey(opts2.gt)
-    opts2.gte = toKey(opts2.gte)
+    var opts2 = {}
+    if (defined(opts.lt)) opts2.lt = toKey(opts.lt)
+    if (defined(opts.lte)) opts2.lte = toKey(opts.lte)
+    if (defined(opts.gt)) opts2.gt = toKey(opts.gt)
+    if (defined(opts.gte)) opts2.gte = toKey(opts.gte)
+    if (defined(opts.reverse)) opts2.reverse = opts.reverse
+    if (defined(opts.limit)) opts2.limit = opts.limit
     var rs = new EntryStream(this.level, opts2)
 
     // start our output stream
@@ -270,4 +271,8 @@ function lookupRecordValue (recordWrapper, key) {
 function normalizeIndexDef (index) {
   if (index.startsWith('*')) return index.slice(1)
   return index
+}
+
+function defined (v) {
+  return typeof v !== 'undefined'
 }

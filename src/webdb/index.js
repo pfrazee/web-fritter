@@ -156,8 +156,12 @@ class WebDB extends EventEmitter {
 
     // create our own new Hyperdrive instance
     if (typeof drive === 'string') {
-      drive = this.Hyperdrive(drive)
-      await new Promise(r => drive.on('ready', r))
+      if (drive in this._drives) {
+        drive = this._drives[drive]
+      } else {
+        drive = this.Hyperdrive(drive)
+        await new Promise(r => drive.on('ready', r))
+      }
     }
     drive.url = `hyper://${Buffer.from(drive.key).toString('hex')}`
     debug('WebDB.indexDrive', drive.url)
@@ -186,9 +190,14 @@ class WebDB extends EventEmitter {
   async indexFile (drive, filepath) {
     if (typeof drive === 'string') {
       const urlp = new URL(drive)
-      drive = this.Hyperdrive(urlp.protocol + '//' + urlp.hostname)
-      await new Promise(r => drive.on('ready', r))
-      drive.url = `hyper://${Buffer.from(drive.key).toString('hex')}`
+      const origin = urlp.protocol + '//' + urlp.hostname
+      if (origin in this._drives) {
+        drive = this._drives[origin]
+      } else {
+        drive = this.Hyperdrive(origin)
+        await new Promise(r => drive.on('ready', r))
+        drive.url = `hyper://${Buffer.from(drive.key).toString('hex')}`
+      }
       return this.indexFile(drive, urlp.pathname)
     }
     await Indexer.readAndIndexFile(this, drive, filepath)

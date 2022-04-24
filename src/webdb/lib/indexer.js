@@ -154,13 +154,11 @@ async function readAndIndexFile (db, drive, filepath, version = false) {
   try {
     // read file
     var record = JSON.parse(await drive.readFile(filepath, {encoding: 'utf8', timeout: READ_TIMEOUT}))
-    console.log('reading and indexing', fileUrl, record)
 
     // index on the first matching table
     for (var i = 0; i < tables.length; i++) {
       let table = tables[i]
       if (table.isRecordFile(filepath)) {
-        console.log('hit', filepath)
         // validate
         let isValid = true
         if (table.schema.validate) {
@@ -273,7 +271,7 @@ async function onFailInitialIndex (e, db, drive, {watch}) {
 async function scanDriveHistoryForUpdates (db, drive, {start, end}) {
   // var history = await drive.history({start, end, timeout: READ_TIMEOUT})
   var history = await new Promise((resolve, reject) => {
-    const s = drive.createDiffStream({start, end})
+    const s = drive.createDiffStream(start)
     s.on('error', reject)
     s.pipe(concat(resolve))
   })
@@ -301,11 +299,9 @@ async function scanDriveForRecords (db, drive) {
 
 // iterate the updates and apply them one by one, updating the metadata as each is applied successfully
 async function applyUpdates (db, drive, updates) {
-  console.log('UPDATES', updates)
   for (let i = 0; i < updates.length; i++) {
     // process update
     var update = updates[i]
-    console.log('processing', update)
     if (update.type === 'del') {
       await unindexFile(db, drive, update.name)
     } else {

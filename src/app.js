@@ -189,7 +189,9 @@ module.exports = class FritterApp {
           document.title = 'Fritter'
         } else if (view === 'user') {
           try {
-            param = `hyper://${param}`
+            if (!param.startsWith('hyper://')) {
+              param = `hyper://${param}`
+          }
             await this.libfritter.db.indexDrive(param, {watch: false}) // index in case not already indexed
             let viewedProfile = await this.libfritter.social.getProfile(param)
             let posts = await this.loadFeedPosts(viewedProfile)
