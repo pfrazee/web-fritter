@@ -2,13 +2,14 @@
 
 const yo = require('yo-yo')
 const nanorouter = require('nanorouter')
-const SDK = require('hyper-sdk')
+const crypto = require('crypto')
 const LibFritter = require('./lib')
 const views = require('../views/index')
 const rerenderIndexingStatuses = require('../com/indexing-statuses').rerender
 const renderErrorIcon = require('../com/icons/error')
 const {toCSSColor, polyfillHistoryEvents, getURLOrigin, shortenDatURL, cssColorToHsla} = require('./util')
 const defaultAvatarBase64Png = require('./default-avatar-base64-png')
+const memDrive = require('./mem-drive')
 
 module.exports = class FritterApp {
   constructor () {
@@ -55,10 +56,8 @@ module.exports = class FritterApp {
   }
 
   async setup () {
-    const sdk = await SDK()
-    const {Hyperdrive} = sdk
-    this.Hyperdrive = Hyperdrive
-    this.libfritter = new LibFritter({mainIndex: 'fritter', Hyperdrive})
+    memDrive.setup()
+    this.libfritter = new LibFritter({mainIndex: 'fritter', Hyperdrive: memDrive.drive})
     window.libfritter = this.libfritter
 
     // setup router
@@ -89,10 +88,9 @@ module.exports = class FritterApp {
     // load database
     var userUrl = window.localStorage.userUrl
     if (userUrl) {
-      this.currentUser = Hyperdrive(userUrl)
-      await new Promise(r => this.currentUser.on('ready', r))
+      this.currentUser = await memDrive.drive(userUrl)
+      this.currentUser.writable = true
       window.user = this.currentUser
-      this.currentUser.url = `hyper://${Buffer.from(this.currentUser.key).toString('hex')}`
       try {
         if (!this.currentUser.writable) throw "Not owner"
         this.libfritter.setUser(this.currentUser)
@@ -150,6 +148,7 @@ module.exports = class FritterApp {
         // }
       }))
     }
+
   }
 
   async loadCurrentUserProfile () {
@@ -488,9 +487,8 @@ module.exports = class FritterApp {
   async updateProfile ({name, bio} = {}) {
     // create user if needed
     if (!this.currentUser) {
-      this.currentUser = this.Hyperdrive('my_profile')
-      await new Promise(r => this.currentUser.on('ready', r))
-      this.currentUser.url = `hyper://${Buffer.from(this.currentUser.key).toString('hex')}`
+      this.currentUser = await memDrive.drive(crypto.randomBytes(32).toString('hex'))
+      this.currentUser.writable = true
       console.log(this.currentUser.url)
       await this.libfritter.prepareDrive(this.currentUser)
       await this.libfritter.db.indexDrive(this.currentUser)

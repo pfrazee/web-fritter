@@ -9,17 +9,6 @@ module.exports = function renderPublicPeerTip () {
 
   return yo`
     <div class="module">
-      <p>
-        Make sure your profile stays online! Share your profile URL with a
-        public peer like <a href="https://hashbase.io">Hashbase</a>.
-      </p>
-
-      <p>
-        Feeling ambitious?
-        <a href="https://github.com/beakerbrowser/hashbase">Deploy your own
-        public peer</a>.
-      </p>
-
       <button class="btn full-width" onclick=${app.copyProfileUrl}>
         Copy your profile URL
         ${renderLinkIcon()}

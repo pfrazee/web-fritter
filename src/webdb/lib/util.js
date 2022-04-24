@@ -76,7 +76,6 @@ exports.toDriveUrl = function (v) {
 exports.checkoutDrive = function (Hyperdrive, drive, version) {
   // use default behavior
   const drive2 = Hyperdrive(drive.url + '+' + version)
-  drive2.url = `hyper://${Buffer.from(drive.key).toString('hex')}`
   return drive2
 }
 

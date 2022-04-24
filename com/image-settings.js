@@ -21,12 +21,12 @@ module.exports = function renderImageSettings () {
 
         <div class="input-wrap">
           <input ${isCurrentSetting('dat') ? 'checked' : ''} type="radio" id="choice-dat" name="embedImages" value="dat">
-          <label for="choice-dat">Embed images from <code>dat://</code> sources</label>
+          <label for="choice-dat">Embed images from <code>hyper://</code> sources</label>
         </div>
 
         <div class="input-wrap">
           <input ${isCurrentSetting('dat-followed') ? 'checked' : ''} type="radio" id="choice-dat-followed" name="embedImages" value="dat-followed">
-          <label for="choice-dat-followed">Embed images from <code>dat://</code> sources I follow</label>
+          <label for="choice-dat-followed">Embed images from <code>hyper://</code> sources I follow</label>
         </div>
 
         <div class="input-wrap">

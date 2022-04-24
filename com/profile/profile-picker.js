@@ -50,13 +50,13 @@ module.exports = function renderProfilePicker () {
     // handle the user pasting their full Fritter URL
     if (profileUrl.startsWith(`${window.location.href}user/`)) {
       profileUrl = profileUrl.substr(`${window.location.href}user/`.length)
-    } else if (profileUrl.startsWith('dat://fritter.hashbase.io/user/')) {
-      profileUrl = profileUrl.substr('dat://fritter.hashbase.io/user/'.length)
+    } else if (profileUrl.startsWith('hyper://fritter.hashbase.io/user/')) {
+      profileUrl = profileUrl.substr('hyper://fritter.hashbase.io/user/'.length)
     }
 
-    // validate that it's a dat:// hash
-    if (profileUrl.startsWith('dat://')) {
-      if (isDatHashRegex.test(profileUrl.substr('dat://'.length))) {
+    // validate that it's a hyper:// hash
+    if (profileUrl.startsWith('hyper://')) {
+      if (isDatHashRegex.test(profileUrl.substr('hyper://'.length))) {
         profileImportSubmitBtn.disabled = false
       }
     } else if (isDatHashRegex.test(profileUrl)) {

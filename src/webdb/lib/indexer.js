@@ -35,10 +35,10 @@ exports.watchDrive = async function (db, drive) {
     return
   }
   // autoindex on changes
-  // TODO debounce!!!!
-  drive.on('update', () => {
+  setInterval(() => {
+  // drive.on('update', () => {
     indexDrive(db, drive)
-  })
+  }, 2000)
 }
 
 exports.unwatchDrive = function (db, drive) {
@@ -81,6 +81,7 @@ exports.resetOutdatedIndexes = async function (db, neededRebuilds) {
 // then update the indexes
 async function indexDrive (db, drive) {
   debug('Indexer.indexDrive', drive.url)
+  await drive.update()
   var release = await lock(`index:${drive.url}`)
   try {
     // sanity check
@@ -270,16 +271,12 @@ async function onFailInitialIndex (e, db, drive, {watch}) {
 // return back the *latest* change to each matching changed record, as an array ordered by revision
 async function scanDriveHistoryForUpdates (db, drive, {start, end}) {
   // var history = await drive.history({start, end, timeout: READ_TIMEOUT})
-  var history = await new Promise((resolve, reject) => {
-    const s = drive.createDiffStream(start)
-    s.on('error', reject)
-    s.pipe(concat(resolve))
-  })
+  var history = await drive.history(start)
 
   // pull the latest update to each file
   var updates = {}
   history.forEach(update => {
-    update.name = `/${update.name}`
+    update.name = update.path
     if (anymatch(db._tableFilePatterns, update.name)) {
       updates[update.name] = update
     }

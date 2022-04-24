@@ -18,9 +18,9 @@ Fritter uses [libfritter](https://github.com/beakerbrowser/libfritter) to manage
 
 ## What is a peer-to-peer Web app?
 
-The peer-to-peer (p2p) Web is a loose term for describing the community of websites and applications that are built on top of p2p protocols like [`dat://`](https://github.com/datproject/dat).
+The peer-to-peer (p2p) Web is a loose term for describing the community of websites and applications that are built on top of p2p protocols like [`hyper://`](https://github.com/datproject/dat).
 
-A p2p Web app is like any other website or app: it's a collection of HTML, CSS, JavaScript, and other files. What makes it different? It uses a p2p protocol (in this case `dat://`) instead of [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol).  Most p2p websites and apps are not supported in mainstream browsers like Firefox or Chrome, but you can use [Beaker](https://beakerbrowser.com) to access websites that use the `dat://` protocol.
+A p2p Web app is like any other website or app: it's a collection of HTML, CSS, JavaScript, and other files. What makes it different? It uses a p2p protocol (in this case `hyper://`) instead of [HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol).  Most p2p websites and apps are not supported in mainstream browsers like Firefox or Chrome, but you can use [Beaker](https://beakerbrowser.com) to access websites that use the `hyper://` protocol.
 
 ## How Fritter works
 
@@ -29,7 +29,7 @@ A p2p Web app is like any other website or app: it's a collection of HTML, CSS, 
 User profiles on the p2p Web are a bit different than user profiles on the traditional Web. Instead of being stored in a server-side database, they're simply websites! This means you can look at all the files that comprise a profile. Check out Dog Legs McBoots's profile to see for yourself:
 
 ```
-dat://232ac2ce8ad4ed80bd1b6de4cbea7d7b0cad1441fa62312c57a6088394717e41
+hyper://232ac2ce8ad4ed80bd1b6de4cbea7d7b0cad1441fa62312c57a6088394717e41
 ```
 
 `profile.json` contains some basic information about the profile:
@@ -58,8 +58,8 @@ A post includes the content of the post, a timestamp, and if applicable, informa
 ```
 {
   "text": "hi",
-  "threadRoot": "dat://232ac2ce8ad4ed80bd1b6de4cbea7d7b0cad1441fa62312c57a6088394717e41/posts/0jbdvsjo9.json",
-  "threadParent": "dat://232ac2ce8ad4ed80bd1b6de4cbea7d7b0cad1441fa62312c57a6088394717e41/posts/0jbdvsjo9.json",
+  "threadRoot": "hyper://232ac2ce8ad4ed80bd1b6de4cbea7d7b0cad1441fa62312c57a6088394717e41/posts/0jbdvsjo9.json",
+  "threadParent": "hyper://232ac2ce8ad4ed80bd1b6de4cbea7d7b0cad1441fa62312c57a6088394717e41/posts/0jbdvsjo9.json",
   "createdAt":1513703188329
 }
 ```
@@ -77,7 +77,7 @@ Fritter keeps track of the URL for the user's profile with Local Storage under t
 Visit Fritter in [Beaker](https://beakerbrowser.com/docs/install/) to create your own profile:
 
 ```
-dat://9900f9aad4d6e79e0beb1c46333852b99829e4dfcdfa9b690eeeab3c367c1b9a
+hyper://9900f9aad4d6e79e0beb1c46333852b99829e4dfcdfa9b690eeeab3c367c1b9a
 ```
 
  Keep in mind that Fritter is an example application and is missing some features like notifications and search that would make it a viable social media application.

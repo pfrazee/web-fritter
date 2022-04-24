@@ -159,11 +159,9 @@ class WebDB extends EventEmitter {
       if (drive in this._drives) {
         drive = this._drives[drive]
       } else {
-        drive = this.Hyperdrive(drive)
-        await new Promise(r => drive.on('ready', r))
+        drive = await this.Hyperdrive(drive)
       }
     }
-    drive.url = `hyper://${Buffer.from(drive.key).toString('hex')}`
     debug('WebDB.indexDrive', drive.url)
     if (!(drive.url in this._drives)) {
       // store and process
@@ -176,10 +174,8 @@ class WebDB extends EventEmitter {
 
   async unindexDrive (drive) {
     if (typeof drive === 'string') {
-      drive = this.Hyperdrive(drive)
-      await new Promise(r => drive.on('ready', r))
+      drive = await this.Hyperdrive(drive)
     }
-    drive.url = `hyper://${Buffer.from(drive.key).toString('hex')}`
     if (drive.url in this._drives) {
       debug('WebDB.unindexDrive', drive.url)
       delete this._drives[drive.url]
@@ -194,9 +190,7 @@ class WebDB extends EventEmitter {
       if (origin in this._drives) {
         drive = this._drives[origin]
       } else {
-        drive = this.Hyperdrive(origin)
-        await new Promise(r => drive.on('ready', r))
-        drive.url = `hyper://${Buffer.from(drive.key).toString('hex')}`
+        drive = await this.Hyperdrive(origin)
       }
       return this.indexFile(drive, urlp.pathname)
     }
@@ -206,9 +200,7 @@ class WebDB extends EventEmitter {
   async unindexFile (drive, filepath) {
     if (typeof drive === 'string') {
       const urlp = new URL(drive)
-      drive = this.Hyperdrive(urlp.protocol + '//' + urlp.hostname)
-      await new Promise(r => drive.on('ready', r))
-      drive.url = `hyper://${Buffer.from(drive.key).toString('hex')}`
+      drive = await this.Hyperdrive(urlp.protocol + '//' + urlp.hostname)
       return this.indexFile(drive, urlp.pathname)
     }
     await Indexer.unindexFile(this, drive, filepath)
